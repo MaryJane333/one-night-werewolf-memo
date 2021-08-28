@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-dark mb-5 rounded-0 row" role="alert">
+    <h1 class="col-4" style="font-size: 36px;">ワンナイト人狼 Memo</h1>
+    <a href="{% url 'logout' %}" class="col-2 offset-6 my-auto">ログアウト</a>
+</div>
+{% endblock header %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container text-center">
+    <div class="border border-2 rounded py-3 mb-4">
+        <p style="font-size: 24px;">このユーザーデータを削除しますか？</p>
+        <p style="font-size: 26px;">{{ object.name }}</p>
+        <form action="" method="POST">{% csrf_token %}
+            <input class="btn btn-danger" type="submit" value="削除">
+        </form>
+    </div>
+    <a href="{% url 'list' %}">元の画面に戻る</a>
+</div>
+{% else %}
+<div class="container text-center">
+    <p>ログインしてください</p>
+    <a href="{% url 'login' %}" role="button" class="btn btn-outline-primary mt-3">ログイン</a>
+</div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-dark mb-5 rounded-0 row" role="alert">
+    <h1 class="col-4" style="font-size: 36px;">ワンナイト人狼 Memo</h1>
+    <a href="{% url 'logout' %}" class="col-2 offset-6 my-auto">ログアウト</a>
+</div>
+{% endblock header %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container text-center">
+    <div class="role border border-2 rounded p-4 mb-5">
+        <div class="row">
+            <div class="col-2 text-center offset-1" style="font-size: 20px;">村人：{{ number_list.villager }}</div>
+            <div class="col-2 text-center" style="font-size: 20px;">占い師：{{ number_list.fortune_teller }}</div>
+            <div class="col-2 text-center" style="font-size: 20px;">怪盗：{{ number_list.thief }}</div>
+            <div class="col-2 text-center text-danger" style="font-size: 20px;">人狼：{{ number_list.werewolf }}</div>
+            <div class="col-2 text-center text-danger" style="font-size: 20px;">狂人：{{ number_list.madman }}</div>
+        </div>
+        <a href="{% url 'update_number' number_list.pk %}" class="btn btn-primary mt-3" tabindex="-1" role="button"
+            aria-disabled="true">役職人数を変更</a>
+    </div>
+    <a href="{% url 'create_name' %}" class="btn btn-primary my-3" tabindex="-1" role="button"
+        aria-disabled="true">ユーザーデータを追加</a>
+
+    {% for item in name_list %}
+    <div class="border border-2 rounded row my-4">
+        <div class="col-2 my-auto offset-1">
+            <h3>{{ item.name }}</h3>
+            <div style="display: flex; justify-content: space-evenly;">
+                <a href="{% url 'delete' item.pk %}" class="btn btn-danger" tabindex="-1" role="button"
+                    aria-disabled="true">削除</a>
+                <a href="{% url 'update_name' item.pk %}" class="btn btn-primary" tabindex="-1" role="button"
+                    aria-disabled="true">変更</a>
+            </div>
+        </div>
+        <div class="col-2">
+            <p class="my-2">自分の役職</p>
+            <p class="my-2">占った/交換した相手</p>
+            <p style="margin-top: 20px;">相手/墓地の役職</p>
+        </div>
+        <div class="col-1">
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    {% for item in name_list %}
+                    <option>{{ item.name }}</option>
+                    {% endfor %}
+                    <option>墓地</option>
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="col-1">
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    {% for item in name_list %}
+                    <option>{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="col-1">
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    {% for item in name_list %}
+                    <option>{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="col-1">
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    {% for item in name_list %}
+                    <option>{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="col-1">
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    {% for item in name_list %}
+                    <option>{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p class="my-2">
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+                <select>
+                    <option>-</option>
+                    <option>村人</option>
+                    <option>占い師</option>
+                    <option>怪盗</option>
+                    <option>人狼</option>
+                    <option>狂人</option>
+                </select>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+    <p>ログインしてください</p>
+    <a href="{% url 'login' %}" role="button" class="btn btn-outline-primary mt-3">ログイン</a>
+</div>
+{% endif %}
+{% endblock content %}

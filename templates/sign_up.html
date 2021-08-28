@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_css %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock custom_css %}
+
+{% block content %}
+
+<body class="text-center">
+    <main class="form-sign-in">
+        {{ error }}
+        <div class="subscribe border border-1 border-secondary rounded p-4">
+            <h2 class="mb-3">ワンナイト人狼 Memo</h2>
+            <form method="POST">{% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal">新規登録</h1>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username" />
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                        name="password" />
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    新規登録
+                </button>
+            </form>
+        </div>
+        <a href="{% url 'login' %}" role="button" class="btn btn-outline-secondary mt-3">ログイン</a>
+    </main>
+</body>
+{% endblock content %}
