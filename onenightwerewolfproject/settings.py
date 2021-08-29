@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_%zj3h-)@eg@qkly7pjk)2a0osv-u-8*32-)3zldo=!vgs5-jk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'one-night-werewolf-memo.herokuapp.com']
 
 
 # Application definition
@@ -82,6 +82,9 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -136,3 +139,14 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+DEBUG = False
+
+try:
+    from config.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
