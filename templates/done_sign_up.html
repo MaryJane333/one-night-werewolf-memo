@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-dark mb-5 rounded-0 row" role="alert">
+    <h1 class="col-4" style="font-size: 36px;">ワンナイト人狼 Memo</h1>
+    <a href="{% url 'logout' %}" class="col-2 offset-6 my-auto">ログアウト</a>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>登録完了</h2>
+    <a href="{% url 'login' %}" role="button" class="btn btn-outline-secondary mt-3">ログイン画面へ</a>
+</div>
+{% endblock content %}

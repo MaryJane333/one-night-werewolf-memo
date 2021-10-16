@@ -10,8 +10,8 @@
 
 <body class="text-center">
     <main class="form-sign-in">
-        {{ error }}
-        <div class="subscribe border border-1 border-secondary rounded p-4">
+        <div class="mt-5" style="color: red;">{{ error }}</div>
+        <div class="subscribe border border-1 border-secondary rounded p-4 mx-auto mt-5" style="width: 400px;">
             <h2 class="mb-3">ワンナイト人狼 Memo</h2>
             <form method="POST">{% csrf_token %}
                 <h1 class="h3 mb-3 fw-normal">新規登録</h1>
@@ -24,7 +24,7 @@
                         name="password" />
                     <label for="floatingPassword">Password</label>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">
+                <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">
                     新規登録
                 </button>
             </form>
