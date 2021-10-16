@@ -1,1 +1,1 @@
-web: gunicorn onenightwerewolfproject.wsgi --log-file -
+web: gunicorn onenightwerewolfproject.wsgi
