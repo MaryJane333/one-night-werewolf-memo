@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'onenightwerewolf.apps.OnenightwerewolfConfig',
+    'django.contrib.sites',                         #追加
+    'allauth',                                      #追加
+    'allauth.account',                              #追加
+    'allauth.socialaccount',                        #追加
+    'allauth.socialaccount.providers.line',         #追加
 ]
 
 MIDDLEWARE = [
@@ -154,3 +159,27 @@ db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+######################################
+# Authentication                     #
+######################################
+
+# Don't forget this little dude.
+SITE_ID = 1
+
+# ログインのリダイレクトURL
+LOGIN_REDIRECT_URL = '/list'
+
+# ログアウトのリダイレクトURL
+ACCOUNT_LOGOUT_REDIRECT_URL = '/login'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'line': {
+        'SCOPE': ['profile','openid'],
+    }
+}

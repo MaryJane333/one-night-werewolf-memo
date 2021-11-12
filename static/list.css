@@ -1,0 +1,12 @@
+.role > div {
+    font-size: 20px;
+}
+
+.delete-and-change {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.role-other {
+    margin-top: 20px;
+}

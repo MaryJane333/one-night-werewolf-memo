@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css %}
+<link href="{% static 'base.css' %}" rel="stylesheet">
+{% endblock css %}
+
 {% block header %}
 <div class="alert alert-dark mb-5 rounded-0 row" role="alert">
-    <h1 class="col-4" style="font-size: 36px;">ワンナイト人狼 Memo</h1>
+    <h1 class="col-4 title">ワンナイト人狼 Memo</h1>
     <a href="{% url 'logout' %}" class="col-2 offset-6 my-auto">ログアウト</a>
 </div>
 {% endblock header %}

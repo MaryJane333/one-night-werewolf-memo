@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import Delete, list_func, login_func, logoutfunc, NameCreate, NameUpdate, NumberCreate, NumberUpdate, sign_up_func
+from .views import Delete, list_func, login_func, logoutfunc, NameCreate,NameUpdate, NumberCreate, NumberUpdate, sign_up_func
 
 urlpatterns = [
     path('admin/', admin.site.urls),
