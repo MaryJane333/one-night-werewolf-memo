@@ -4,11 +4,22 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from django.urls.base import reverse_lazy
+from django.views.decorators.csrf import requires_csrf_token
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.http import HttpResponseServerError
 from .forms import CreateName, CreateNumber
 from .models import NameModel, NumberModel
 
+
+
 # Create your views here.
+
+@requires_csrf_token # herokuでもエラーを表示(https://zenn.dev/adverdest/articles/6f02b818c25760)
+def my_customized_server_error(request, template_name='500.html'):
+    import sys
+    from django.views import debug
+    error_html = debug.technical_500_response(request, *sys.exc_info()).content
+    return HttpResponseServerError(error_html)
 
 def list_func(request):
     name_list = NameModel.objects.filter(username=request.user)

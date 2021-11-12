@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+from onenightwerewolf import views
+
+# herokuでのエラー表示(https://zenn.dev/adverdest/articles/6f02b818c25760)
+handler500 = views.my_customized_server_error
 
 urlpatterns = [
     path('admin/', admin.site.urls),
