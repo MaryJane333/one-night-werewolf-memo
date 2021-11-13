@@ -3,8 +3,19 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'delete.css' %}" rel="stylesheet">
-<link href="{% static 'base.css' %}" rel="stylesheet">
+<style>
+    .title {
+        font-size: 36px;
+    }
+
+    .delete-message {
+        font-size: 24px;
+    }
+
+    .delete-user {
+        font-size: 26px;
+    }
+</style>
 {% endblock css %}
 
 {% block header %}

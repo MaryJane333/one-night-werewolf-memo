@@ -3,7 +3,25 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'login.css' %}" rel="stylesheet">
+<style>
+    .login {
+        width: 400px;
+    }
+
+    .line-login {
+        display: block;
+        background-color: #06C755;
+        color: white;
+        width: 350px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+
+    .line-login:hover {
+        background-color: #00b100;
+        color: white;
+    }
+</style>
 {% endblock css %}
 
 {% block content %}
@@ -29,7 +47,9 @@
                 </button>
             </form>
         </div>
-        <p><a href="{% url 'line_login' %}" class="line-login border rounded py-2 mx-auto my-3 text-decoration-none d-flex align-items-center justify-content-center">LINEでログイン</a></p>
+        <p><a href="{% url 'line_login' %}"
+                class="line-login border rounded py-2 mx-auto my-3 text-decoration-none d-flex align-items-center justify-content-center">LINEでログイン</a>
+        </p>
         <a href="{% url 'sign_up' %}" role="button" class="btn btn-outline-secondary mt-3">新規登録</a>
     </main>
 </body>

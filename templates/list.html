@@ -3,8 +3,24 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'list.css' %}" rel="stylesheet">
-<link href="{% static 'base.css' %}" rel="stylesheet">
+<style>
+    .title {
+        font-size: 36px;
+    }
+
+    .role>div {
+        font-size: 20px;
+    }
+
+    .delete-and-change {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .role-other {
+        margin-top: 20px;
+    }
+</style>
 {% endblock css %}
 
 {% block header %}
