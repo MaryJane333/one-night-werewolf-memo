@@ -186,5 +186,15 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # Google login
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']  # クライアントID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'] # クライアント シークレット
+from socket import gethostname
+from os import environ
+
+HOSTNAME = gethostname()
+
+if 'local' in HOSTNAME:
+    import local_settings
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY  # クライアントID
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET # クライアント シークレット
+else:
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = environ['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']  # クライアントID
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'] # クライアント シークレット
