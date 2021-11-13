@@ -24,5 +24,6 @@ handler500 = views.my_customized_server_error
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('allauth.urls')),
+    path('google/', include('social_django.urls', namespace='social')),
     path('', include('onenightwerewolf.urls')),
 ]

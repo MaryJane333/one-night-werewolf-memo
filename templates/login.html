@@ -8,17 +8,29 @@
         width: 400px;
     }
 
-    .line-login {
+    .api-login {
         display: block;
-        background-color: #06C755;
         color: white;
         width: 350px;
         height: 48px;
         font-size: 1.25rem;
     }
 
+    .line-login {
+        background-color: #06C755;
+    }
+
     .line-login:hover {
         background-color: #00b100;
+        color: white;
+    }
+
+    .google-login {
+        background-color: #4285F4;
+    }
+
+    .google-login:hover {
+        background-color: #2776f5;
         color: white;
     }
 </style>
@@ -47,8 +59,13 @@
                 </button>
             </form>
         </div>
-        <p><a href="{% url 'line_login' %}"
-                class="line-login border rounded py-2 mx-auto my-3 text-decoration-none d-flex align-items-center justify-content-center">LINEでログイン</a>
+        <p>
+            <a href="{% url 'line_login' %}"
+                class="line-login api-login border rounded py-2 mx-auto my-3 text-decoration-none d-flex align-items-center justify-content-center">LINEでログイン</a>
+        </p>
+        <p>
+            <a href="{% url 'social:begin' 'google-oauth2' %}"
+                class="google-login api-login border rounded py-2 mx-auto my-3 text-decoration-none d-flex align-items-center justify-content-center">Googleでログイン</a>
         </p>
         <a href="{% url 'sign_up' %}" role="button" class="btn btn-outline-secondary mt-3">新規登録</a>
     </main>

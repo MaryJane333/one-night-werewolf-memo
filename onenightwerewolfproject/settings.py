@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'onenightwerewolf.apps.OnenightwerewolfConfig',
-    'django.contrib.sites',                         #追加
-    'allauth',                                      #追加
-    'allauth.account',                              #追加
-    'allauth.socialaccount',                        #追加
-    'allauth.socialaccount.providers.line',         #追加
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.line',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'onenightwerewolfproject.urls'
@@ -70,6 +72,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -160,11 +164,7 @@ DATABASES['default'].update(db_from_env)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-######################################
-# Authentication                     #
-######################################
-
-# Don't forget this little dude.
+# Line login
 SITE_ID = 1
 
 # ログインのリダイレクトURL
@@ -175,7 +175,8 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/login'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    "allauth.account.auth_backends.AuthenticationBackend",
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.google.GoogleOAuth2', 
 )
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -183,3 +184,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['profile','openid'],
     }
 }
+
+# Google login
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1066255852652-rifiu223cemjs0jsg5cr4bj2dm8lqage.apps.googleusercontent.com'  # クライアントID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # クライアント シークレット

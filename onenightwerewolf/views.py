@@ -2,19 +2,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
+from django.http import HttpResponseServerError
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls.base import reverse_lazy
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.http import HttpResponseServerError
 from .forms import CreateName, CreateNumber
 from .models import NameModel, NumberModel
 
-
-
-# Create your views here.
-
-@requires_csrf_token # herokuでもエラーを表示(https://zenn.dev/adverdest/articles/6f02b818c25760)
+# herokuでもエラーを表示(https://zenn.dev/adverdest/articles/6f02b818c25760)
+@requires_csrf_token
 def my_customized_server_error(request, template_name='500.html'):
     import sys
     from django.views import debug
@@ -27,7 +25,7 @@ def list_func(request):
     try:
         number_list = NumberModel.objects.get(username=request.user)   
         return render(request, 'list.html', {'name_list':name_list, 'number_list':number_list})
-    except ObjectDoesNotExist: # NumberModelがない時の処理
+    except ObjectDoesNotExist: # NumberModelがない時の処理→NumberModel作成ページへ
         return redirect('create_number')
 
 def login_func(request):
@@ -91,3 +89,6 @@ class NumberUpdate(UpdateView):
     model = NumberModel
     fields = ('villager', 'fortune_teller', 'thief', 'werewolf', 'madman')
     success_url = reverse_lazy('list')
+
+def google_func(request):
+    return HttpResponseRedirect('social:begin', kwargs=dict(backend='google-oauth2'))
