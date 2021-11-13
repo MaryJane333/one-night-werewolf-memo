@@ -192,9 +192,9 @@ from os import environ
 HOSTNAME = gethostname()
 
 if 'local' in HOSTNAME:
-    import local_settings
-    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY  # クライアントID
-    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET # クライアント シークレット
+    from .local_settings import *
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = LOCAL_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY  # クライアントID
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = LOCAL_SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET # クライアント シークレット
 else:
     SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = environ['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']  # クライアントID
     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'] # クライアント シークレット
