@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
-import local_settings
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -187,5 +186,5 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # Google login
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY  # クライアントID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = local_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET # クライアント シークレット
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1066255852652-rifiu223cemjs0jsg5cr4bj2dm8lqage.apps.googleusercontent.com'  # クライアントID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # クライアント シークレット
